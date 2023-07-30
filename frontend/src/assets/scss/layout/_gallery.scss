@@ -1,0 +1,117 @@
+.gallery {
+	padding: 0 1rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-auto-rows: 150px;
+	gap: 2rem;
+
+	&__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 10px;
+		background-color: $surface-color;
+		border: 1px solid #ccc;
+
+		&:hover {
+			transform: translateY(-0.6rem) scale(1.04) !important;
+		}
+	}
+
+	&__img-container {
+		cursor: zoom-in;
+
+		&.zoom {
+			overflow-y: auto;
+			z-index: 2;
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100vw;
+			height: 100vh;
+			cursor: default;
+			background-color: $surface-color;
+			background-image: url(../images/bg.jpg);
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+
+			.gallery__img {
+				height: 70vh;
+				width: 70vw;
+				object-fit: contain;
+				display: block;
+				margin: 4rem auto;
+
+				&:hover {
+					transform: none;
+				}
+
+				&__title {
+					width: 100%;
+					text-align: center;
+					color: set-text-color($surface-color);
+					padding: 0 1rem;
+				}
+			}
+		}
+	}
+}
+
+.upload-image {
+	cursor: default;
+	flex-grow: 1;
+	border: 2px dotted grey;
+	padding: 0.5rem 1rem;
+	text-align: center;
+	background-color: $secondary-color;
+	color: set-text-color($secondary-color);
+	border-radius: 6px;
+	letter-spacing: 0.5px;
+
+	&:hover,
+	&.darg-over {
+		$color: darken($secondary-color, 5%);
+		background-color: $color;
+		color: set-text-color($color);
+		border-color: #000;
+	}
+
+	&__images {
+		margin-top: 1rem;
+
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__image-container {
+		padding: 1rem 0;
+		display: flex;
+		gap: 2rem;
+	}
+
+	&__img {
+		border: 1px solid $border-color;
+	}
+}
+
+@include media-tablet {
+	.gallery {
+		gap: 3.5rem;
+		grid-template-columns: repeat(3, 1fr);
+		grid-auto-rows: 200px;
+	}
+}
+
+@include media-laptop {
+	.gallery {
+		grid-template-columns: repeat(4, 1fr);
+		grid-auto-rows: 250px;
+	}
+}
+
+@include media-laptop-lg {
+	.gallery {
+		grid-template-columns: repeat(5, 1fr);
+		grid-auto-rows: 300px;
+	}
+}
